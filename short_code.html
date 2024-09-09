@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>Js Task</title>
+    <style>
+        .form-shadow {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            border-radius: 8px;
+            background: #fff;
+        }
+
+        .table-container {
+            margin-top: 50px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .table {
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .table:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .table thead th {
+            background-color: #007bff;
+            color: #ffffff;
+            border-bottom: 2px solid #dee2e6;
+            font-weight: bold;
+            text-align: center;
+            font-size: 1.1rem;
+            padding: 16px;
+        }
+
+        .table tbody tr {
+            background-color: #ffffff;
+            transition: background-color 0.3s ease;
+        }
+
+        .table tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .table tbody tr:nth-of-type(even) {
+            background-color: #f9f9f9;
+        }
+
+        .table tbody td {
+            padding: 12px;
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        .table-bordered th,
+        .table-bordered td {
+            border: 1px solid #dee2e6;
+        }
+
+        .btn-action {
+            margin: 0 5px;
+            font-size: 0.9rem;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .btn-primary {
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body class="d-flex flex-column align-items-center">
+    <form id="dataForm" class="row g-3 w-50 mt-5 form-shadow">
+        <div class="col-md-6">
+            <label for="fName" class="form-label">First Name</label>
+            <input type="text" class="form-control" id="fName">
+        </div>
+        <div class="col-md-6">
+            <label for="lName" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="lName">
+        </div>
+        <div class="col-md-6">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email">
+        </div>
+        <div class="col-md-6">
+            <label for="contact" class="form-label">Contact</label>
+            <input type="text" class="form-control" id="contact">
+        </div>
+        <div class="col-12">
+            <label for="address" class="form-label">Address</label>
+            <input type="text" class="form-control" id="address" placeholder="1234 Main St">
+        </div>
+        <div class="col-md-6">
+            <label for="city" class="form-label">City</label>
+            <input type="text" class="form-control" id="city">
+        </div>
+        <div class="col-md-4">
+            <label for="state" class="form-label">State</label>
+            <select id="state" class="form-select">
+                <option selected>Choose...</option>
+                <option value="kolhapur">Kolhapur</option>
+                <option value="pune">Pune</option>
+                <option value="mumbai">Mumbai</option>
+                <option value="satara">Satara</option>
+                <option value="sangali">Sangali</option>
+            </select>
+        </div>
+        <div class="col-md-2">
+            <label for="zip" class="form-label">Zip</label>
+            <input type="text" class="form-control" id="zip">
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Submit</button>
+
+        </div>
+    </form>
+
+    <div class="container table-container">
+        <h2>Records</h2>
+        <table class="table table-bordered" id="dataTable">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Contact</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Zip</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <!-- Data will be inserted here -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <script>
+        let records = [];
+
+        document.getElementById('dataForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            let record = {
+                'firstname': document.getElementById('fName').value,
+                'lastname': document.getElementById('lName').value,
+                'email': document.getElementById('email').value,
+                'password': document.getElementById('contact').value,
+                'address': document.getElementById('address').value,
+                'city': document.getElementById('city').value,
+                'state': document.getElementById('state').value,
+                'zip': document.getElementById('zip').value
+            }
+
+            records.push(record);
+            display();
+            console.log(records);
+
+        });
+
+        function display() {
+            let table = document.querySelector('tbody');
+            let rows = '';
+            records.forEach(record => {
+                rows += ` <tr>
+                    <td>${record.firstname}</td>
+                    <td>${record.lastname}</td>
+                    <td>${record.email}</td>
+                    <td>${record.contact}</td>
+                    <td>${record.address}</td>
+                    <td>${record.city}</td>
+                    <td>${record.state}</td>
+                    <td>${record.zip}</td>
+                    <td><button class="btn btn-primary btn-action" data-email="${record.email}" onclick="deleteRow(this)">Update</button></td>
+                    <td><button class="btn btn-primary btn-action" data-email="${record.email}" onclick="deleteRow(this)">Delete</button></td>
+                </tr>`;
+            });
+            table.innerHTML = rows;
+        }
+
+        function editRow(button) {
+            // Implement your edit functionality here
+            alert('Edit functionality not implemented.');
+        }
+
+        function deleteRow(button) {
+            let email = button.getAttribute('data-email');
+            let index = records.findIndex(record => record.email === email);
+            if (index !== -1) {
+                records.splice(index, 1);
+                console.log(records);
+                display();
+            }else{
+                console.log('Record not found');
+            }
+        }
+    </script>
+</body>
+
+</html>
