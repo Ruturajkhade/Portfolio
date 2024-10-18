@@ -1,0 +1,19 @@
+.projects {
+    background: #f4f4f4;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+  }
+  
+  .project-list {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .project-item {
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 10px 0;
+  }
+  
