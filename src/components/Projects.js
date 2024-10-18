@@ -17,7 +17,7 @@ const Projects = () => {
           <a href="https://project-link.com" target="_blank" rel="noopener noreferrer">View Project</a>
         </div>
         <div className="project-item">
-          <h3>Project 3</h3>
+          <h3>Project   3</h3>
           <p>Description of project 3.</p>
           <a href="https://project-link.com" target="_blank" rel="noopener noreferrer">View Project</a>
         </div>
